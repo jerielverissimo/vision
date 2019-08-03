@@ -37,7 +37,7 @@ packages:
     source: hosted
     version: "0.1.2"
   firebase_ml_vision:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: firebase_ml_vision
       url: "https://pub.dartlang.org"
@@ -53,6 +53,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  image_picker:
+    dependency: "direct dev"
+    description:
+      name: image_picker
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.12+1"
   matcher:
     dependency: transitive
     description:
