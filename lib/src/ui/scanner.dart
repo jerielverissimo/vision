@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class Scanner extends StatelessWidget {
@@ -30,8 +32,7 @@ class Scanner extends StatelessWidget {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Container _build_background() {
     return Container(
       decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -87,6 +88,112 @@ class Scanner extends StatelessWidget {
               end: Alignment.topCenter),
         ],
       ),
+    );
+  }
+
+  var button = RaisedButton(
+      onPressed: () {
+        print("teste");
+      },
+      textColor: Colors.white,
+      padding: const EdgeInsets.all(0.0),
+      child: Container(
+        decoration: BoxDecoration(
+            gradient:
+                LinearGradient(colors: [Color(0xffe040fb), Color(0xff7c4dff)])),
+        padding: const EdgeInsets.fromLTRB(50, 20, 50, 20),
+        child: const Text("Leitura"),
+      ));
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        this._build_background(),
+        Positioned(
+          bottom: 0,
+          child: Container(
+            color: Colors.white,
+            width: MediaQuery.of(context).size.width,
+            height: 200,
+            child: Center(
+              child: button,
+            ),
+          ),
+        ),
+        Positioned(
+          bottom: 150,
+          left: (MediaQuery.of(context).size.width / 2) -
+              (MediaQuery.of(context).size.width - 45) / 2,
+          width: MediaQuery.of(context).size.width - 45,
+          height: 175,
+          child: Padding(
+              padding: const EdgeInsets.all(15),
+              child: Transform.rotate(
+                angle: pi / 25,
+                child: Container(
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [Color(0xff8e24aa), Color(0xffff5252)]
+                      ),
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: Colors.grey, width: 0.5),
+                      boxShadow: [
+                        BoxShadow(
+                            offset: Offset(0.0, 1.0),
+                            blurRadius: 1.0,
+                            spreadRadius: -1.0,
+                            color: Colors.grey),
+                        BoxShadow(
+                            offset: Offset(0.0, 1.0),
+                            blurRadius: 1.0,
+                            spreadRadius: 0.0,
+                            color: Colors.grey),
+                        BoxShadow(
+                            offset: Offset(0.0, 1.0),
+                            blurRadius: 1.0,
+                            spreadRadius: 0.0,
+                            color: Colors.grey),
+                      ]),
+                ),
+              )),
+        ),
+        Positioned(
+          bottom: 150,
+          left: (MediaQuery.of(context).size.width / 2) -
+              (MediaQuery.of(context).size.width - 45) / 2,
+          width: MediaQuery.of(context).size.width - 45,
+          height: 175,
+          child: Padding(
+              padding: const EdgeInsets.all(15),
+              child: Transform.rotate(
+                angle: -pi / 50,
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: Colors.grey, width: 0.5),
+                      boxShadow: [
+                        BoxShadow(
+                            offset: Offset(0.0, 1.0),
+                            blurRadius: 1.0,
+                            spreadRadius: -1.0,
+                            color: Colors.grey),
+                        BoxShadow(
+                            offset: Offset(0.0, 1.0),
+                            blurRadius: 1.0,
+                            spreadRadius: 0.0,
+                            color: Colors.grey),
+                        BoxShadow(
+                            offset: Offset(0.0, 1.0),
+                            blurRadius: 1.0,
+                            spreadRadius: 0.0,
+                            color: Colors.grey),
+                      ]),
+                ),
+              )),
+        )
+      ],
     );
   }
 }
