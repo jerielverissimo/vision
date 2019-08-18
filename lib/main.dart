@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_ml_vision/firebase_ml_vision.dart';
-import 'src/ui/teste.dart';
 import 'src/ui/scanner.dart';
 
 void main() => runApp(MyApp());
@@ -13,8 +12,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        //home: PictureScanner(),
-        home: Scanner(),
+        // home: Scanner(),
+        home: MyHomePage(),
     );
   }
 }
@@ -29,7 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   bool isImageLoaded = false;
   String result = "result";
-
+  FirebaseVisionImage ourImage; 
 
   Future pickImage() async {
     var tempStore = await ImagePicker.pickImage(source: ImageSource.gallery);
@@ -37,11 +36,19 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       pickedImage = tempStore;
       isImageLoaded = true;
+      ourImage = FirebaseVisionImage.fromFile(pickedImage);
     });
+
+    if (pickedImage == null) {
+        throw Exception('File is not available');
+      }
   }
 
   Future readText() async {
-    FirebaseVisionImage ourImage = FirebaseVisionImage.fromFile(pickedImage);
+    await pickImage();
+    if (ourImage == null) {
+      print("Imagem nula");
+    }
     TextRecognizer recognizeText = FirebaseVision.instance.textRecognizer();
     VisionText visionText = await recognizeText.processImage(ourImage);
 

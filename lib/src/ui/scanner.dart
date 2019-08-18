@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'teste.dart';
 
 class Scanner extends StatelessWidget {
   static const pink = Color(0xffff4081);
@@ -91,9 +92,14 @@ class Scanner extends StatelessWidget {
     );
   }
 
-  var button = RaisedButton(
+  RaisedButton _build_button(BuildContext context) {
+    return RaisedButton(
       onPressed: () {
-        print("teste");
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => PictureScanner())
+        
+        );
       },
       textColor: Colors.white,
       padding: const EdgeInsets.all(0.0),
@@ -104,6 +110,8 @@ class Scanner extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(50, 20, 50, 20),
         child: const Text("Leitura"),
       ));
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +125,7 @@ class Scanner extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             height: 200,
             child: Center(
-              child: button,
+              child: _build_button(context),
             ),
           ),
         ),
